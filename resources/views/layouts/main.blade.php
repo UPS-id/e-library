@@ -25,6 +25,19 @@
 
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                {{-- flash messages --}}
+                @if(session('success'))
+                    <div class="mb-4 rounded-lg bg-green-50 p-4 text-sm text-green-700" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-700" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
                 @yield('content')
             </div>
         </main>
