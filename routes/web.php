@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HallController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,8 +13,14 @@ Route::get('/about', function () {
     return view('about', ['title' => 'About']);
 });
 
+Route::prefix('dashboard')->middleware('auth', 'isAdmin')->group(function () {
+    Route::get('/', function () {
+        return view('dashboard.dashboard', ['title' => 'Dashboard']);
+    });
+});
+
 Route::get('/dashboard', function () {
-    return view('dashboard', ['title' => 'Dashboard']);
+    return view('dashboard.dashboard', ['title' => 'Dashboard']);
 })->middleware(['auth', 'isAdmin']);
 
 Route::get('/hall', [HallController::class, 'index']);
@@ -28,3 +35,5 @@ Route::get('/register', [LoginController::class, 'register'])->middleware('guest
 Route::post('/register', [LoginController::class, 'store'])->middleware('guest');
 
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
+
+Route::get('/', [HomeController::class, 'index']);

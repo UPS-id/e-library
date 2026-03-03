@@ -17,10 +17,10 @@ class isAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            abort(403, 'Akses ditolak. Lu Siape Jir, Lu Ga Ada Akses Di Sini.');
+            abort(403, 'Akses ditolak. Lu Siape Jir, Ga Ada Akses.');
         }
         if ($request->user()->role !== 'admin') {
-            abort(403, 'Akses ditolak. Lu Siape Jir, Lu Ga Ada Akses Di Sini.');
+            abort(403, 'Akses ditolak. Lu Siape Jir, Ga Ada Akses.');
         }
         return $next($request);
     }
