@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique(); // <-- PASTIKAN BARIS INI ADA
             $table->string('cover')->nullable();
             $table->text('body');
-            $table->timestamp('published_at')->nullable();
+            $table->dateTime('published_at')->nullable();
+            $table->boolean('status')->default(false);
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('author_id')->constrained()->onDelete('cascade');
             $table->softDeletes();

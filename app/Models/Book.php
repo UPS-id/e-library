@@ -19,6 +19,11 @@ class Book extends Model
     ];
     protected $with = ['category', 'author'];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

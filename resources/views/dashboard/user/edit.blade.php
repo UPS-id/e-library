@@ -29,11 +29,12 @@
                         @enderror
                     </div>
 
-                    
+
                     <!-- Username Field -->
                     <div>
                         <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                        <input type="text" name="username" id="username" value="{{ $user->username ?? old('username') }}" required
+                        <input type="text" name="username" id="username"
+                            value="{{ $user->username ?? old('username') }}" required
                             class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('username') border-red-500 @enderror">
                         @error('username')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -43,7 +44,8 @@
                     <!-- Email Field -->
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" name="email" id="email" value="{{ $user->email ?? old('email') }}" required
+                        <input type="email" name="email" id="email" value="{{ $user->email ?? old('email') }}"
+                            required
                             class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('email') border-red-500 @enderror">
                         @error('email')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -66,8 +68,9 @@
                         <select name="role" id="role" required
                             class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             <option value=""></option>
-                            <option value="admin" @selected($user->role == 'admin' || old('role') == 'admin')>Admin</option>
-                            <option value="user" @selected($user->role == 'user' || old('role') == 'user')>User</option>
+                            <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin
+                            </option>
+                            <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>User</option>
                         </select>
                         @error('role')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>

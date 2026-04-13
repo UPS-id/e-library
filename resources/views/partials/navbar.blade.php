@@ -16,6 +16,11 @@
                         <a href="/hall"
                             class="rounded-md px-3 py-2 text-sm font-medium {{ request()->is('/hall*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
                             aria-current="page">Hall</a>
+                        @auth
+                            <a href="/borrows/{{ auth()->user()->slug }}"
+                                class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('/borrows/*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">My
+                                Borrows</a>
+                        @endauth
                         <a href="/about"
                             class="rounded-md px-3 py-2 text-sm font-medium {{ request()->is('/about*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
                             aria-current="page">About</a>
@@ -49,12 +54,13 @@
                                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                 tabindex="-1">
                                 <!-- Active: "bg-gray-100 outline-hidden", Not Active: "" -->
-                                <p class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                    tabindex="-1" id="user-menu-item-0">{{ auth()->user()->name }}</p>
+                                <p class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                    id="user-menu-item-0">{{ auth()->user()->name }}</p>
                                 <div class="mt-3 space-y-1 px-2">
                                     @if (auth()->user()->role == 'admin')
-                                        <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer transition" role="menuitem"
-                                            tabindex="-1" id="user-menu-item-1">Dashboard</a>
+                                        <a href="/dashboard"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer transition"
+                                            role="menuitem" tabindex="-1" id="user-menu-item-1">Dashboard</a>
                                     @endif
 
                                     <form action="/logout" method="POST" class="block"
@@ -107,6 +113,11 @@
                     aria-current="page">Homepage</a>
                 <a href="/hall"
                     class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('/hall*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Hall</a>
+                @auth
+                    <a href="/borrows/{{ auth()->user()->slug }}"
+                        class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('/borrows/*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">My
+                        Borrows</a>
+                @endauth
                 <a href="/about"
                     class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('/about*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">About</a>
             </div>

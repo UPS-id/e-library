@@ -12,10 +12,13 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $title = 'Author';
-        $authors = Author::all();
-        return view('dashboard.author.index', compact('title', 'authors'));
+        return view('dashboard.author.index', [
+            'title' => 'Author',
+            'authors' => Author::latest()->paginate(10)
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -80,6 +83,4 @@ class AuthorController extends Controller
         Author::destroy($author->id);
         return redirect('/dashboard/author')->with('success', 'Author has been deleted!');
     }
-
-    
 }

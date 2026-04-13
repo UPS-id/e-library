@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HallController;
 use App\Http\Controllers\HomeController;
@@ -36,6 +37,11 @@ Route::prefix('dashboard')->middleware('auth', 'isAdmin')->group(function () {
     Route::resource('user', UserController::class);
 
     Route::resource('book', BookController::class);
+
+    Route::get('/borrow', [BorrowController::class, 'index'])->middleware('auth');
+    Route::get('/borrow/{borrow}/edit', [BorrowController::class, 'edit'])->middleware('auth');
+    Route::put('/borrow/{borrow}', [BorrowController::class, 'update'])->middleware('auth');
+    Route::delete('/borrow/{borrow}', [BorrowController::class, 'destroy'])->middleware('auth');
 });
 
 Route::get('/hall', [HallController::class, 'index']);
@@ -50,5 +56,9 @@ Route::get('/register', [LoginController::class, 'register'])->middleware('guest
 Route::post('/register', [LoginController::class, 'store'])->middleware('guest');
 
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
+
+Route::post('/borrow', [BorrowController::class, 'store'])->middleware('auth');
+
+Route::get('/borrows/{user:slug}', [BorrowController::class, 'userIndex'])->name('borrows')->middleware('auth');
 
 Route::get('/', [HomeController::class, 'index']);
