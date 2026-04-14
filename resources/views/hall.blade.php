@@ -73,7 +73,7 @@
                 @foreach ($books->skip(1) as $book)
                     <div class="bg-white shadow-md rounded-lg overflow-hidden">
                         <div class="relative">
-                            @if ($book->image)
+                            @if ($book->cover)
                                 <img src="{{ Storage::url($book->cover) }}" class="w-full h-60 object-cover"
                                     alt="Book Cover">
                             @else

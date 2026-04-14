@@ -58,7 +58,7 @@ Route::post('/register', [LoginController::class, 'store'])->middleware('guest')
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
 Route::post('/borrow', [BorrowController::class, 'store'])->middleware('auth');
-
 Route::get('/borrows/{user:slug}', [BorrowController::class, 'userIndex'])->name('borrows')->middleware('auth');
+Route::get('/borrow/detail/{borrow}', [BorrowController::class, 'detail'])->middleware('auth');
 
 Route::get('/', [HomeController::class, 'index']);

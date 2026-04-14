@@ -50,7 +50,7 @@
                     </div>
                     <!-- status Select Field -->
                     <div>
-                        <label for="status" class="block text-sm font-medium text-gray-700">status</label>
+                        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                         <select name="status" id="status" required
                             class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             <option value=""></option>
@@ -60,6 +60,15 @@
                             <option value="ditolak" @selected(old('status', $borrow->status) == 'ditolak')>Ditolak</option>
                         </select>
                         @error('status')
+                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <!-- message Field -->
+                    <div id="messageField" class="hidden">
+                        <label for="message" class="block text-sm font-medium text-gray-700">Pesan</label>
+                        <input type="text" name="message" value="{{ $borrow->message ?? old('message') }}"
+                            class="mt-1 p-2 block w-full rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('message') border-2 border-red-500 @else border border-gray-300 @enderror">
+                        @error('message')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -74,4 +83,24 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        const statusSelect = document.getElementById('status');
+        const messageField = document.getElementById('messageField');
+
+        function toggleMessageField() {
+            if (statusSelect.value === 'ditolak') {
+                messageField.classList.remove('hidden');
+            } else {
+                messageField.classList.add('hidden');
+            }
+        }
+
+        // jalan saat halaman load
+        toggleMessageField();
+
+        // jalan saat user ganti select
+        statusSelect.addEventListener('change', toggleMessageField);
+    </script>
 @endsection

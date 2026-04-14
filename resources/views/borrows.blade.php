@@ -2,13 +2,6 @@
 @section('content')
     <div class="min-h-screen flex items-center justify-center p-4">
         <div class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-5xl">
-            @if (session()->has('success'))
-                <div class="mb-5 rounded-lg bg-green-100 px-6 py-5 text-sm text-green-800 border border-green-300" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-
             <!-- Header -->
             <div class="p-6 bg-sky-950 text-white text-center rounded-t-lg">
                 <h1 class="text-3xl font-bold">{{ $title }}</h1>
@@ -55,7 +48,7 @@
                                         @endif
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a href="404 Not Found"
+                                        <a href="/borrow/detail/{{ $borrow->id }}"
                                             class="bg-blue-200 px-2 py-1 rounded-lg text-blue-500 hover:bg-blue-500 hover:text-white">
                                             <i class="fa-regular fa-eye"></i>
                                         </a>

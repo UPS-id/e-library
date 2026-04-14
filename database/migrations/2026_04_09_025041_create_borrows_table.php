@@ -11,11 +11,12 @@ return new class extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('book_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade');
+            $table->foreignId('book_id')->references('id')->on('books')->constrained()->onDelete('cascade');
             $table->date('borrow_date');
             $table->date('due_date');
             $table->string('status');
+            $table->string('message')->nullable();
             $table->timestamps();
         });
     }

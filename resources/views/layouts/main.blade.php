@@ -9,11 +9,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     @vite('resources/css/app.css')
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.1/css/all.css" />
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.1/css/sharp-thin.css" />
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.1/css/sharp-solid.css" />
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.1/css/sharp-regular.css" />
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.1/css/sharp-light.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 </head>
 
 <body class="h-full">
@@ -26,13 +22,13 @@
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                 {{-- flash messages --}}
-                @if(session('success'))
+                @if (session('success'))
                     <div class="mb-4 rounded-lg bg-green-50 p-4 text-sm text-green-700" role="alert">
                         {{ session('success') }}
                     </div>
                 @endif
 
-                @if(session('error'))
+                @if (session('error'))
                     <div class="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-700" role="alert">
                         {{ session('error') }}
                     </div>

@@ -33,7 +33,7 @@
 
             <a href="/dashboard/book"
                 class="flex font-semibold items-center py-2 px-4 rounded-md transition {{ Request::is('dashboard/book*') ? 'bg-gray-950 text-gray-100' : 'text-gray-900 hover:bg-gray-950 hover:text-gray-100' }} group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class="fas fa-books mr-3 text-lg"></i>
+                <i class="fas fa-book mr-3 text-lg"></i>
                 <span class="text-sm">Book</span>
             </a>
 

@@ -14,7 +14,7 @@ class BookController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
+    {
         return view('dashboard.book.index', [
             'title' => 'Book',
             'books' => Book::latest()->paginate(10)
@@ -86,7 +86,7 @@ class BookController extends Controller
             "author_id" => "required"
         ];
         if ($request->slug != $book->slug) {
-            $rules['slug'] = 'required unique: books';
+            $rules['slug'] = 'required|unique:books,slug';
         }
         $validatedData = $request->validate($rules);
         if ($request->hasFile('cover')) {
@@ -95,7 +95,7 @@ class BookController extends Controller
             }
             $validatedData['cover'] = $request->file('cover')->store('book-covers', 'public');
         }
-        Book::where('id', $book->id)->update($validatedData);
+        $book->update($validatedData);
         return redirect('/dashboard/book')->with('success', 'Book has been updated!');
     }
 
