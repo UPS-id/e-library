@@ -154,4 +154,25 @@ class ApiController extends Controller
 
         return response()->json(['message' => 'Book deleted successfully']);
     }
+
+    public function bookByStatus(string $status)
+    {
+        $books = Book::where('status', $status)->get();
+
+        if ($books->isEmpty()) {
+            return response()->json(['message' => 'No books found with the specified status'], 404);
+        }
+
+        return response()->json($books);
+    }
+
+    public function search(string $search)
+    {
+        $books = Book::where('name', 'like', '%' . $search . '%')
+            ->orWhere('body', 'like', '%' . $search . '%')->get();
+        if ($books->isEmpty()) {
+            return response()->json(['message' => 'Book not found'], 404);
+        }
+        return response()->json($books);
+    }
 }
